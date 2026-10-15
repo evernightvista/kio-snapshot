@@ -3,7 +3,7 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-project(kio-snapshot VERSION 1.1.0)
+project(kio-snapshot VERSION 1.0.0)
 
 set(QT_MIN_VERSION 6.8.0)
 set(KF_MIN_VERSION 6.29.0)
@@ -58,8 +58,13 @@ target_include_directories(btrfssnapshots_lib PUBLIC common/)
 
 add_subdirectory(kioworker)
 add_subdirectory(contextmenu)
+add_subdirectory(overlayicon)
 
 install(FILES org.kde.kio_snapshot.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+
+if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/po")
+    ki18n_install(po)
+endif()
 
 include(CTest)
 add_subdirectory(autotests)
